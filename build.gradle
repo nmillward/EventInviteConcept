@@ -21,3 +21,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    // App Dependencies
+    supportLibraryVersion = '23.4.0'
+}
