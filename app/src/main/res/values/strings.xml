@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EventInviteConcept</string>
+    <string name="title_activity_test">test</string>
 </resources>
