@@ -15,7 +15,7 @@
             android:pathData="@string/path_check"
             android:strokeWidth="@integer/stroke_width"
             android:strokeLineCap="square"
-            android:strokeColor="@color/grey"/>
+            android:strokeColor="@color/white"/>
 
     </group>
 
