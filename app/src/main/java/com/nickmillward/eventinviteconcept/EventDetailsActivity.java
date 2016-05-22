@@ -34,8 +34,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         if (inviteOverlay != null) {
             inviteOverlay.setVisibility(View.INVISIBLE);
         }
-
-
     }
 
     @Override
@@ -48,7 +46,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     hideInviteOverlay(inviteOverlay);
                 }
         }
-
     }
 
     private void revealInviteOverlay(View view) {
