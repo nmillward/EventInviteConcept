@@ -6,7 +6,7 @@
     android:viewportWidth="@integer/viewport_width">
 
     <group
-        android:name="@string/groupCheckCross"
+        android:name="@string/groupCheckAdd"
         android:pivotX="@integer/viewport_center_x"
         android:pivotY="@integer/viewport_center_y">
 
