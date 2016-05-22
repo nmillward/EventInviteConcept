@@ -58,7 +58,7 @@
     <include layout="@layout/content_details_event" />
 
     <LinearLayout
-        android:id="@+id/event_detail_fab_overlay"
+        android:id="@+id/event_detail_invite_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
