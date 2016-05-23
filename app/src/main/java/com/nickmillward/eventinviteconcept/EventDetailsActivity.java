@@ -3,18 +3,24 @@ package com.nickmillward.eventinviteconcept;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayout inviteOverlay;
+    private FloatingActionButton fab;
+    private ImageView fabIcon;
 
-    private boolean isInviteVisible;
+    private boolean isInviteOverlayVisible;
+    private boolean isFabBgVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +30,24 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
+        fabIcon = (ImageView) findViewById(R.id.event_detail_fab_icon);
+        fabIcon.setRotation(45);    //Set cross default rotation to 45 --> plus sign
+
+        fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
+        isFabBgVisible = true;
+
         if (fab != null) {
             fab.setOnClickListener(this);
         }
 
-        isInviteVisible = false;
+        //Enable Layout Transitions on Coordinator Layout
+//        CoordinatorLayout fabContainer = (CoordinatorLayout) findViewById(R.id.event_detail_coordinator_layout);
+//        LayoutTransition layoutTransition = fabContainer.getLayoutTransition();
+//        layoutTransition.enableTransitionType(LayoutTransition.CHANGING);
+
+        animateFabPosition(fab);
+
+        isInviteOverlayVisible = false;
         inviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
         if (inviteOverlay != null) {
             inviteOverlay.setVisibility(View.INVISIBLE);
@@ -40,12 +58,46 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.event_detail_fab:
-                if (!isInviteVisible) {
+                if (!isInviteOverlayVisible) {
                     revealInviteOverlay(inviteOverlay);
+                    animateFabPosition(fab);
                 } else {
                     hideInviteOverlay(inviteOverlay);
+                    animateFabPosition(fab);
                 }
         }
+    }
+
+    private void animateFabPosition(FloatingActionButton fab) {
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+
+        if (!isFabBgVisible) {
+            params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+
+//            Animation rotate = new RotateAnimation(0, 45, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//            rotate.setFillBefore(true);
+//            rotate.setFillAfter(true);
+//            rotate.setFillEnabled(true);
+//            rotate.setDuration(450);
+//            rotate.setInterpolator(new FastOutSlowInInterpolator());
+//            fab.setAnimation(rotate);
+
+            isFabBgVisible = true;
+        } else {
+            params.gravity = Gravity.BOTTOM | Gravity.END;
+
+//            Animation rotate = new RotateAnimation(45, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//            rotate.setFillBefore(true);
+//            rotate.setFillAfter(true);
+//            rotate.setFillEnabled(true);
+//            rotate.setDuration(450);
+//            rotate.setInterpolator(new FastOutSlowInInterpolator());
+//            fab.setAnimation(rotate);
+
+            isFabBgVisible = false;
+        }
+
+        fab.setLayoutParams(params);
     }
 
     private void revealInviteOverlay(View view) {
@@ -55,7 +107,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
         view.setVisibility(View.VISIBLE);
-        isInviteVisible = true;
+        isInviteOverlayVisible = true;
         anim.start();
     }
 
@@ -72,7 +124,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                 view.setVisibility(View.INVISIBLE);
             }
         });
-        isInviteVisible = false;
+        isInviteOverlayVisible = false;
         anim.start();
     }
 }
