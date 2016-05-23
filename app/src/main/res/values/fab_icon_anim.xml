@@ -8,12 +8,15 @@
     <integer name="viewport_center_y">12</integer>
     <integer name="stroke_width">2</integer>
     <string name="path_check">M4.8,13.4 L9,17.6 M10.4,16.2 L19.6,7</string>
-    <string name="path_add">M6.4,12 L17.6,12 M12,6.4 L12,17.6</string>
+    <string name="path_cross">M6.4,6.4 L17.6,17.6 M6.4,17.6 L17.6,6.4</string>
+    <string name="path_plus">M6.4,12 L17.6,12 M12,6.4 L12,17.6</string>
 
     <!--name-->
     <string name="check">check</string>
-    <string name="add">add</string>
-    <string name="groupCheckAdd">groupCheckAdd</string>
+    <string name="cross">cross</string>
+    <string name="plus">plus</string>
+    <string name="groupCheckCross">groupCheckCross</string>
+    <string name="groupPlusCross">groupPlusCross</string>
 
     <!--drawing-->
     <color name="grey">#808080</color>

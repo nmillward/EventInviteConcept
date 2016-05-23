@@ -4,10 +4,10 @@
 
     <target
         android:name="@string/check"
-        android:animation="@animator/check_to_add"/>
+        android:animation="@animator/check_to_cross"/>
 
     <target
-        android:name="@string/groupCheckAdd"
-        android:animation="@animator/rotate_check_to_add"/>
+        android:name="@string/groupCheckCross"
+        android:animation="@animator/rotate_check_to_cross"/>
 
 </animated-vector>
