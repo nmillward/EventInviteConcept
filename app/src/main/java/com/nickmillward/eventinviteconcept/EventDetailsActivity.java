@@ -31,10 +31,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
-
-//        fabIcon = (ImageView) findViewById(R.id.event_detail_fab_icon);
-//        fabIcon.setRotation(45);    //Set cross default rotation to 45 --> plus sign
-
+        
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
 
