@@ -2,6 +2,8 @@ package com.nickmillward.eventinviteconcept;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -30,8 +32,8 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
 
-        fabIcon = (ImageView) findViewById(R.id.event_detail_fab_icon);
-        fabIcon.setRotation(45);    //Set cross default rotation to 45 --> plus sign
+//        fabIcon = (ImageView) findViewById(R.id.event_detail_fab_icon);
+//        fabIcon.setRotation(45);    //Set cross default rotation to 45 --> plus sign
 
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
@@ -45,7 +47,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 //        LayoutTransition layoutTransition = fabContainer.getLayoutTransition();
 //        layoutTransition.enableTransitionType(LayoutTransition.CHANGING);
 
-        animateFabPosition(fab);
+//        animateFabPosition(fab);
 
         isInviteOverlayVisible = false;
         inviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
@@ -56,16 +58,25 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.event_detail_fab:
-                if (!isInviteOverlayVisible) {
-                    revealInviteOverlay(inviteOverlay);
-                    animateFabPosition(fab);
-                } else {
-                    hideInviteOverlay(inviteOverlay);
-                    animateFabPosition(fab);
-                }
+
+        fab.setSelected(!fab.isSelected());
+        fab.setImageResource(fab.isSelected() ? R.drawable.avd_cross_to_check : R.drawable.avd_check_to_cross);
+        Drawable drawable = fab.getDrawable();
+        if (drawable instanceof Animatable) {
+            ((Animatable) drawable).start();
         }
+
+//        switch (view.getId()) {
+//            case R.id.event_detail_fab:
+//                if (!isInviteOverlayVisible) {
+//                    revealInviteOverlay(inviteOverlay);
+////                    animateFabPosition(fab);
+//                } else {
+//                    hideInviteOverlay(inviteOverlay);
+//                    fab.show();
+////                    animateFabPosition(fab);
+//                }
+//        }
     }
 
     private void animateFabPosition(FloatingActionButton fab) {
