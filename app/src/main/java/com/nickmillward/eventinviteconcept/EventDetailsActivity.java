@@ -59,24 +59,27 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
 
-        fab.setSelected(!fab.isSelected());
-        fab.setImageResource(fab.isSelected() ? R.drawable.avd_cross_to_check : R.drawable.avd_check_to_cross);
-        Drawable drawable = fab.getDrawable();
-        if (drawable instanceof Animatable) {
-            ((Animatable) drawable).start();
-        }
+        switch (view.getId()) {
+            case R.id.event_detail_fab:
+                if (!isInviteOverlayVisible) {
+                    revealInviteOverlay(inviteOverlay);
+//                    animateFabPosition(fab);
+                    fab.setImageResource(R.drawable.avd_plus_to_cross);
+                    fab.setCompatElevation(0);
+                } else {
+                    hideInviteOverlay(inviteOverlay);
+//                    animateFabPosition(fab);
+                    fab.setImageResource(R.drawable.avd_cross_to_plus);
+                    fab.setCompatElevation(4);
+                }
 
-//        switch (view.getId()) {
-//            case R.id.event_detail_fab:
-//                if (!isInviteOverlayVisible) {
-//                    revealInviteOverlay(inviteOverlay);
-////                    animateFabPosition(fab);
-//                } else {
-//                    hideInviteOverlay(inviteOverlay);
-//                    fab.show();
-////                    animateFabPosition(fab);
-//                }
-//        }
+                // Animate the AVD
+                Drawable drawable = fab.getDrawable();
+                if (drawable instanceof Animatable) {
+                    ((Animatable) drawable).start();
+                }
+
+        }
     }
 
     private void animateFabPosition(FloatingActionButton fab) {
