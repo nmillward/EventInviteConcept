@@ -2,7 +2,7 @@
 <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
     android:propertyName="rotation"
     android:valueFrom="0"
-    android:valueTo="180"
+    android:valueTo="225"
     android:duration="@integer/duration"
     android:interpolator="@android:interpolator/fast_out_slow_in">
 

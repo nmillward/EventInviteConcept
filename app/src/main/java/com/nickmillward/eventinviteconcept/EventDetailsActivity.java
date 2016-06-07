@@ -31,7 +31,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
-        
+
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
 
