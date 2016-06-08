@@ -66,6 +66,12 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="check"/>
+
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

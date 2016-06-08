@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -20,9 +21,11 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     private LinearLayout inviteOverlay;
     private FloatingActionButton fab;
     private ImageView fabIcon;
+    private Button buttonCheck;
 
     private boolean isInviteOverlayVisible;
     private boolean isFabBgVisible;
+    private boolean isCheckButtonClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,15 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
 
+        buttonCheck = (Button) findViewById(R.id.btn_check);
+        isCheckButtonClicked = false;
+
         if (fab != null) {
             fab.setOnClickListener(this);
+        }
+
+        if (buttonCheck != null) {
+            buttonCheck.setOnClickListener(this);
         }
 
         //Enable Layout Transitions on Coordinator Layout
@@ -63,11 +73,17 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 //                    animateFabPosition(fab);
                     fab.setImageResource(R.drawable.avd_plus_to_cross);
                     fab.setCompatElevation(0);
-                } else {
+                } else if (isInviteOverlayVisible && !isCheckButtonClicked) {
                     hideInviteOverlay(inviteOverlay);
 //                    animateFabPosition(fab);
                     fab.setImageResource(R.drawable.avd_cross_to_plus);
                     fab.setCompatElevation(4);
+
+                    isCheckButtonClicked = true;
+                } else if (isInviteOverlayVisible && isCheckButtonClicked) {
+                    fab.setImageResource(R.drawable.avd_cross_to_check);
+
+                    isCheckButtonClicked = false;
                 }
 
                 // Animate the AVD
@@ -76,6 +92,15 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     ((Animatable) drawable).start();
                 }
 
+
+//            case R.id.btn_check:
+//                if (!isCheckButtonClicked) {
+//                    fab.setImageResource(R.drawable.avd_cross_to_check);
+//                    isCheckButtonClicked = true;
+//                } else {
+//                    fab.setImageResource(R.drawable.avd_check_to_cross);
+//                    isCheckButtonClicked = false;
+//                }
         }
     }
 
