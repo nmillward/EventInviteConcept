@@ -15,6 +15,7 @@ import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,7 +26,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private boolean isInviteOverlayVisible;
     private boolean isFabBgVisible;
-    private boolean isCheckButtonClicked;
+    private boolean isAvatarSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,31 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         isFabBgVisible = true;
 
         buttonCheck = (Button) findViewById(R.id.btn_check);
-        isCheckButtonClicked = false;
+        isAvatarSelected = false;
 
         if (fab != null) {
             fab.setOnClickListener(this);
         }
 
         if (buttonCheck != null) {
-            buttonCheck.setOnClickListener(this);
+            buttonCheck.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!isAvatarSelected) {
+                        fab.setImageResource(R.drawable.avd_cross_to_check);
+                        isAvatarSelected = true;
+                    } else {
+                        fab.setImageResource(R.drawable.avd_check_to_cross);
+                        isAvatarSelected = false;
+                    }
+
+                    // Animate the AVD
+                    Drawable drawable = fab.getDrawable();
+                    if (drawable instanceof Animatable) {
+                        ((Animatable) drawable).start();
+                    }
+                }
+            });
         }
 
         //Enable Layout Transitions on Coordinator Layout
@@ -68,22 +86,33 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         switch (view.getId()) {
             case R.id.event_detail_fab:
+
+                // If invite overlay is NOT visible, show FAB with PLUS
+                // Fab onClick = reveal overlay, change FAB icon to CROSS
                 if (!isInviteOverlayVisible) {
                     revealInviteOverlay(inviteOverlay);
-//                    animateFabPosition(fab);
                     fab.setImageResource(R.drawable.avd_plus_to_cross);
                     fab.setCompatElevation(0);
-                } else if (isInviteOverlayVisible && !isCheckButtonClicked) {
-                    hideInviteOverlay(inviteOverlay);
+
 //                    animateFabPosition(fab);
+
+                }
+
+                // If invite overlay is visible AND Avatar is NOT selected, show FAB with CROSS
+                // Fab onClick = hide overlay, change FAB icon to PLUS
+                else {
                     fab.setImageResource(R.drawable.avd_cross_to_plus);
                     fab.setCompatElevation(4);
 
-                    isCheckButtonClicked = true;
-                } else if (isInviteOverlayVisible && isCheckButtonClicked) {
-                    fab.setImageResource(R.drawable.avd_cross_to_check);
+                    if (!isAvatarSelected) {
+                        hideInviteOverlay(inviteOverlay);
+                    } else {
+                        Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
+                        hideInviteOverlay(inviteOverlay);
+                        isAvatarSelected = false;
+                    }
 
-                    isCheckButtonClicked = false;
+//                    animateFabPosition(fab);
                 }
 
                 // Animate the AVD
@@ -93,14 +122,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                 }
 
 
-//            case R.id.btn_check:
-//                if (!isCheckButtonClicked) {
-//                    fab.setImageResource(R.drawable.avd_cross_to_check);
-//                    isCheckButtonClicked = true;
-//                } else {
-//                    fab.setImageResource(R.drawable.avd_check_to_cross);
-//                    isCheckButtonClicked = false;
-//                }
         }
     }
 
