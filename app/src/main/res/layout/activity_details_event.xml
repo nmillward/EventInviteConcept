@@ -58,21 +58,21 @@
 
     <include layout="@layout/content_details_event" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/event_detail_invite_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
-        android:orientation="vertical"
         android:visibility="gone">
 
         <Button
             android:id="@+id/btn_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="check"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/event_detail_fab"

@@ -14,12 +14,12 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private LinearLayout inviteOverlay;
+    private RelativeLayout inviteOverlay;
     private FloatingActionButton fab;
     private ImageView fabIcon;
     private Button buttonCheck;
@@ -75,7 +75,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 //        animateFabPosition(fab);
 
         isInviteOverlayVisible = false;
-        inviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
+        inviteOverlay = (RelativeLayout) findViewById(R.id.event_detail_invite_overlay);
         if (inviteOverlay != null) {
             inviteOverlay.setVisibility(View.INVISIBLE);
         }
