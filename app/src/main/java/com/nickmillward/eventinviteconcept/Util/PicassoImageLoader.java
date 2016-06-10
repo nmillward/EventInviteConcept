@@ -1,4 +1,4 @@
-package com.nickmillward.eventinviteconcept.Util;
+package com.nickmillward.eventinviteconcept.util;
 
 import android.content.Context;
 import android.widget.ImageView;

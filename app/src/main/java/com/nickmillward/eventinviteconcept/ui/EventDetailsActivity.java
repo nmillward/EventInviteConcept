@@ -1,4 +1,4 @@
-package com.nickmillward.eventinviteconcept;
+package com.nickmillward.eventinviteconcept.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.nickmillward.eventinviteconcept.R;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
