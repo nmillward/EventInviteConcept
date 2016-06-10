@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
@@ -19,9 +21,12 @@ import android.widget.Toast;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private LinearLayout inviteOverlay;
     private FloatingActionButton fab;
     private ImageView fabIcon;
+
+    private LinearLayout avatarInviteOverlay;
+    private RecyclerView avatarRecyclerView;
+    private GridLayoutManager gridLayoutManager;
     private Button buttonCheck;
 
     private boolean isInviteOverlayVisible;
@@ -75,10 +80,20 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 //        animateFabPosition(fab);
 
         isInviteOverlayVisible = false;
-        inviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
-        if (inviteOverlay != null) {
-            inviteOverlay.setVisibility(View.INVISIBLE);
+        avatarInviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
+        if (avatarInviteOverlay != null) {
+            avatarInviteOverlay.setVisibility(View.INVISIBLE);
         }
+
+        avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
+        // initialize adapter
+        // set adapter onClickListener
+        // set adapter to recyclcerView
+
+        gridLayoutManager = new GridLayoutManager(this, 4);
+        avatarRecyclerView.setLayoutManager(gridLayoutManager);
+        avatarRecyclerView.setHasFixedSize(true);
+
     }
 
     @Override
@@ -90,7 +105,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                 // If invite overlay is NOT visible, show FAB with PLUS
                 // Fab onClick = reveal overlay, change FAB icon to CROSS
                 if (!isInviteOverlayVisible) {
-                    revealInviteOverlay(inviteOverlay);
+                    revealInviteOverlay(avatarInviteOverlay);
                     fab.setImageResource(R.drawable.avd_plus_to_cross);
                     fab.setCompatElevation(0);
 
@@ -105,10 +120,10 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     fab.setCompatElevation(4);
 
                     if (!isAvatarSelected) {
-                        hideInviteOverlay(inviteOverlay);
+                        hideInviteOverlay(avatarInviteOverlay);
                     } else {
                         Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
-                        hideInviteOverlay(inviteOverlay);
+                        hideInviteOverlay(avatarInviteOverlay);
                         isAvatarSelected = false;
                     }
 
