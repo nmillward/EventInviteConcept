@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="@dimen/standard_padding_half">
 
     <ImageView
         android:id="@+id/iv_avatar_item"
         android:layout_width="@dimen/avatar_image_size"
-        android:layout_height="@dimen/avatar_image_size" />
+        android:layout_height="@dimen/avatar_image_size"
+        android:layout_marginBottom="@dimen/standard_padding_half"
+        tools:src="@drawable/nick_profile_small"/>
 
     <TextView
         android:id="@+id/tv_avatar_item"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:text="Avatar Name"/>
 
 </LinearLayout>
