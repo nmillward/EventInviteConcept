@@ -5,15 +5,15 @@ package com.nickmillward.eventinviteconcept.entity;
  */
 public class Avatar {
 
-    private int avatarImage;
+    private String avatarImage;
     private String avatarName;
 
-    public Avatar(int avatarImage, String avatarName) {
+    public Avatar(String avatarImage, String avatarName) {
         this.avatarImage = avatarImage;
         this.avatarName = avatarName;
     }
 
-    public int getAvatarImage() {
+    public String getAvatarImage() {
         return avatarImage;
     }
 
