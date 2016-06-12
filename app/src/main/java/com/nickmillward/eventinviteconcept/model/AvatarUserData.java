@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class AvatarUserData {
 
-    private List<Avatar> avatars;
+    List<Avatar> avatars;
 
     public List<Avatar> getAvatars() {
 

@@ -19,7 +19,6 @@ import java.util.List;
  */
 public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.AvatarViewHolder> {
 
-    private LayoutInflater inflater;
     private ImageLoader imageLoader;
     private List<Avatar> avatars;
 
@@ -30,15 +29,12 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
 
     @Override
     public AvatarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.item_avatar_invite, parent, false);
-
-        AvatarViewHolder holder = new AvatarViewHolder(view);
-
-        return holder;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_avatar_invite, parent, false);
+        return new AvatarViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final AvatarViewHolder holder, int position) {
+    public void onBindViewHolder(AvatarViewHolder holder, int position) {
         final Avatar avatar = avatars.get(position);
         imageLoader.loadWithTransformation(holder.avatarImage, avatar.getAvatarImage(), new CircleTransform());
         holder.avatarName.setText(avatar.getAvatarName());
@@ -49,7 +45,7 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
         return avatars.size();
     }
 
-    class AvatarViewHolder extends RecyclerView.ViewHolder {
+    public class AvatarViewHolder extends RecyclerView.ViewHolder {
 
         ImageView avatarImage;
         TextView avatarName;

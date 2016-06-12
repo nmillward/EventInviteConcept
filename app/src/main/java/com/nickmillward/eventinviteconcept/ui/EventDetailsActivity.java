@@ -20,6 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nickmillward.eventinviteconcept.R;
+import com.nickmillward.eventinviteconcept.adapter.AvatarListAdapter;
+import com.nickmillward.eventinviteconcept.entity.Avatar;
+import com.nickmillward.eventinviteconcept.model.AvatarUserData;
+import com.nickmillward.eventinviteconcept.util.ImageLoader;
+import com.nickmillward.eventinviteconcept.util.PicassoImageLoader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,8 +36,12 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private LinearLayout avatarInviteOverlay;
     private RecyclerView avatarRecyclerView;
+    private AvatarListAdapter avatarListAdapter;
     private GridLayoutManager gridLayoutManager;
+    private ImageLoader imageLoader;
     private Button buttonCheck;
+    private List<Avatar> avatars;
+    private AvatarUserData avatarUserData;
 
     private boolean isInviteOverlayVisible;
     private boolean isFabBgVisible;
@@ -42,6 +54,8 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
+
+        imageLoader = new PicassoImageLoader(this);
 
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
@@ -87,10 +101,19 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
             avatarInviteOverlay.setVisibility(View.INVISIBLE);
         }
 
+        avatarUserData = new AvatarUserData();
+
+        if (avatars == null) {
+            avatars = new ArrayList<>();
+            avatars.addAll(avatarUserData.getAvatars());
+        }
+
         avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
         // initialize adapter
+        avatarListAdapter = new AvatarListAdapter(avatars, imageLoader);
         // set adapter onClickListener
         // set adapter to recyclcerView
+        avatarRecyclerView.setAdapter(avatarListAdapter);
 
         gridLayoutManager = new GridLayoutManager(this, 4);
         avatarRecyclerView.setLayoutManager(gridLayoutManager);
