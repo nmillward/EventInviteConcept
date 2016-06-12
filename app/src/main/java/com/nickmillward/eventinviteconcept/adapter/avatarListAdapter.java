@@ -8,16 +8,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nickmillward.eventinviteconcept.R;
+import com.nickmillward.eventinviteconcept.entity.Avatar;
+import com.nickmillward.eventinviteconcept.util.CircleTransform;
 import com.nickmillward.eventinviteconcept.util.ImageLoader;
+
+import java.util.List;
 
 /**
  * Created by nmillward on 6/10/16.
  */
 public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.AvatarViewHolder> {
 
-    private ImageLoader imageLoader;
-
     private LayoutInflater inflater;
+    private ImageLoader imageLoader;
+    private List<Avatar> avatars;
+
+    public AvatarListAdapter(List<Avatar> avatars, ImageLoader imageLoader) {
+        this.avatars = avatars;
+        this.imageLoader = imageLoader;
+    }
 
     @Override
     public AvatarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,14 +39,14 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
 
     @Override
     public void onBindViewHolder(final AvatarViewHolder holder, int position) {
-
-
-
+        final Avatar avatar = avatars.get(position);
+        imageLoader.loadWithTransformation(holder.avatarImage, avatar.getAvatarImage(), new CircleTransform());
+        holder.avatarName.setText(avatar.getAvatarName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return avatars.size();
     }
 
     class AvatarViewHolder extends RecyclerView.ViewHolder {
