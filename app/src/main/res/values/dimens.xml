@@ -7,5 +7,5 @@
     <dimen name="standard_padding">16dp</dimen>
     <dimen name="standard_padding_half">8dp</dimen>
 
-    <dimen name="avatar_image_size">120dp</dimen>
+    <dimen name="avatar_image_size">64dp</dimen>
 </resources>
