@@ -21,8 +21,6 @@ import com.nickmillward.eventinviteconcept.R;
 import com.nickmillward.eventinviteconcept.adapter.AvatarListAdapter;
 import com.nickmillward.eventinviteconcept.entity.Avatar;
 import com.nickmillward.eventinviteconcept.model.AvatarUserData;
-import com.nickmillward.eventinviteconcept.util.ImageLoader;
-import com.nickmillward.eventinviteconcept.util.PicassoImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +33,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView avatarRecyclerView;
     private AvatarListAdapter avatarListAdapter;
     private GridLayoutManager gridLayoutManager;
-    private ImageLoader imageLoader;
     private List<Avatar> avatars;
     private AvatarUserData avatarUserData;
 
@@ -50,8 +47,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
-
-        imageLoader = new PicassoImageLoader(this);
 
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
