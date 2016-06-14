@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -37,7 +36,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     private AvatarListAdapter avatarListAdapter;
     private GridLayoutManager gridLayoutManager;
     private ImageLoader imageLoader;
-    private Button buttonCheck;
     private List<Avatar> avatars;
     private AvatarUserData avatarUserData;
 
@@ -58,32 +56,10 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
 
-        buttonCheck = (Button) findViewById(R.id.btn_check);
         isAvatarSelected = false;
 
         if (fab != null) {
             fab.setOnClickListener(this);
-        }
-
-        if (buttonCheck != null) {
-            buttonCheck.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!isAvatarSelected) {
-                        fab.setImageResource(R.drawable.avd_cross_to_check);
-                        isAvatarSelected = true;
-                    } else {
-                        fab.setImageResource(R.drawable.avd_check_to_cross);
-                        isAvatarSelected = false;
-                    }
-
-                    // Animate the AVD
-                    Drawable drawable = fab.getDrawable();
-                    if (drawable instanceof Animatable) {
-                        ((Animatable) drawable).start();
-                    }
-                }
-            });
         }
 
         //Enable Layout Transitions on Coordinator Layout
@@ -161,7 +137,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     if (!isAvatarSelected) {
                         hideInviteOverlay(avatarInviteOverlay);
                     } else {
-                        Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
                         hideInviteOverlay(avatarInviteOverlay);
                         isAvatarSelected = false;
                     }
