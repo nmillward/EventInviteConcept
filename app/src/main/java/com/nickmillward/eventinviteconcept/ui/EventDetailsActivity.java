@@ -86,7 +86,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Avatar item) {
-                Toast.makeText(EventDetailsActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
                 if (!isAvatarSelected) {
                     fab.setImageResource(R.drawable.avd_cross_to_check);
                     isAvatarSelected = true;
@@ -137,6 +136,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     if (!isAvatarSelected) {
                         hideInviteOverlay(avatarInviteOverlay);
                     } else {
+                        Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
                         hideInviteOverlay(avatarInviteOverlay);
                         isAvatarSelected = false;
                     }
