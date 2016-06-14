@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.nickmillward.eventinviteconcept.R;
 import com.nickmillward.eventinviteconcept.entity.Avatar;
-import com.squareup.picasso.Picasso;
+import com.nickmillward.eventinviteconcept.util.CircleTransform;
+import com.nickmillward.eventinviteconcept.util.ImageLoader;
+import com.nickmillward.eventinviteconcept.util.PicassoImageLoader;
 
 import java.util.List;
 
@@ -62,18 +64,18 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
 
         private ImageView avatarImage;
         private TextView avatarName;
+        private ImageLoader imageLoader;
 
         public AvatarViewHolder(View itemView) {
             super(itemView);
             avatarImage = (ImageView) itemView.findViewById(R.id.iv_avatar_item);
             avatarName = (TextView) itemView.findViewById(R.id.tv_avatar_item);
+            imageLoader = new PicassoImageLoader(itemView.getContext());
         }
 
         public void bind(final Avatar avatar, final OnItemClickListener listener) {
             avatarName.setText(avatar.getAvatarName());
-//            imageLoader.loadWithTransformation(avatarImage, avatar.getAvatarImage(), new CircleTransform());
-            Picasso.with(itemView.getContext()).load(avatar.getAvatarImage()).into(avatarImage);
-
+            imageLoader.loadWithTransformation(avatarImage, avatar.getAvatarImage(), new CircleTransform());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
