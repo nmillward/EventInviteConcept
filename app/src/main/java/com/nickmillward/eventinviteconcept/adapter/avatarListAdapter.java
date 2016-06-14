@@ -44,13 +44,8 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
 
     @Override
     public void onBindViewHolder(AvatarViewHolder holder, int position) {
-//        final Avatar avatar = avatars.get(position);
-//        imageLoader.loadWithTransformation(holder.avatarImage, avatar.getAvatarImage(), new CircleTransform());
-//        holder.avatarName.setText(avatar.getAvatarName());
-
         holder.bind(avatars.get(position), listener);
 
-        //Set view to fade in
         setFadeAnimation(holder.itemView, position);
 //        setScaleAnimation(holder.itemView);
     }
