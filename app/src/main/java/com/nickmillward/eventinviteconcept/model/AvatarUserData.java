@@ -16,6 +16,7 @@ public class AvatarUserData {
 
         avatars = new ArrayList<>();
 
+        // Mock Data
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
@@ -24,7 +25,7 @@ public class AvatarUserData {
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
-        
+
         return avatars;
     }
 }
