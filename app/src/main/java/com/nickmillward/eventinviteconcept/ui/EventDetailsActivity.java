@@ -121,7 +121,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                 if (!isInviteOverlayVisible) {
                     revealInviteOverlay(avatarInviteOverlay);
                     fab.setImageResource(R.drawable.avd_plus_to_cross);
-                    fab.setCompatElevation(0);
+//                    fab.setCompatElevation(0);
 
 //                    animateFabPosition(fab);
 
@@ -131,7 +131,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                 // Fab onClick = hide overlay, change FAB icon to PLUS
                 else {
                     fab.setImageResource(R.drawable.avd_cross_to_plus);
-                    fab.setCompatElevation(4);
+//                    fab.setCompatElevation(4);
 
                     if (!isAvatarSelected) {
                         hideInviteOverlay(avatarInviteOverlay);

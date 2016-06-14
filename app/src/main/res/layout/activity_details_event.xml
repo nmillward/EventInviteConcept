@@ -64,7 +64,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:padding="@dimen/standard_padding"
         android:visibility="gone">
 
