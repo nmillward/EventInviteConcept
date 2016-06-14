@@ -107,15 +107,26 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         }
 
         avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
-        // initialize adapter
         avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Avatar item) {
                 Toast.makeText(EventDetailsActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+                if (!isAvatarSelected) {
+                    fab.setImageResource(R.drawable.avd_cross_to_check);
+                    isAvatarSelected = true;
+                } else {
+                    fab.setImageResource(R.drawable.avd_check_to_cross);
+                    isAvatarSelected = false;
+                }
+
+                // Animate the AVD
+                Drawable drawable = fab.getDrawable();
+                if (drawable instanceof Animatable) {
+                    ((Animatable) drawable).start();
+                }
+
             }
         });
-        // set adapter onClickListener
-        // set adapter to recyclcerView
         avatarRecyclerView.setAdapter(avatarListAdapter);
 
         gridLayoutManager = new GridLayoutManager(this, 4);
