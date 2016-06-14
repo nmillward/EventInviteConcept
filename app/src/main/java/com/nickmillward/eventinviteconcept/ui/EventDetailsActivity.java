@@ -108,7 +108,12 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
         // initialize adapter
-        avatarListAdapter = new AvatarListAdapter(avatars, imageLoader);
+        avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Avatar item) {
+                Toast.makeText(EventDetailsActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
         // set adapter onClickListener
         // set adapter to recyclcerView
         avatarRecyclerView.setAdapter(avatarListAdapter);

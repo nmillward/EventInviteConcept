@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 import com.nickmillward.eventinviteconcept.R;
 import com.nickmillward.eventinviteconcept.entity.Avatar;
-import com.nickmillward.eventinviteconcept.util.CircleTransform;
-import com.nickmillward.eventinviteconcept.util.ImageLoader;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,12 +21,17 @@ import java.util.List;
  */
 public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.AvatarViewHolder> {
 
-    private ImageLoader imageLoader;
-    private List<Avatar> avatars;
+    public interface OnItemClickListener {
+        void onItemClick(Avatar item);
+    }
 
-    public AvatarListAdapter(List<Avatar> avatars, ImageLoader imageLoader) {
+    private final List<Avatar> avatars;
+    private final OnItemClickListener listener;
+    private int lastPosition = -1;
+
+    public AvatarListAdapter(List<Avatar> avatars, OnItemClickListener listener) {
         this.avatars = avatars;
-        this.imageLoader = imageLoader;
+        this.listener = listener;
     }
 
     @Override
@@ -38,12 +42,14 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
 
     @Override
     public void onBindViewHolder(AvatarViewHolder holder, int position) {
-        final Avatar avatar = avatars.get(position);
-        imageLoader.loadWithTransformation(holder.avatarImage, avatar.getAvatarImage(), new CircleTransform());
-        holder.avatarName.setText(avatar.getAvatarName());
+//        final Avatar avatar = avatars.get(position);
+//        imageLoader.loadWithTransformation(holder.avatarImage, avatar.getAvatarImage(), new CircleTransform());
+//        holder.avatarName.setText(avatar.getAvatarName());
+
+        holder.bind(avatars.get(position), listener);
 
         //Set view to fade in
-        setFadeAnimation(holder.itemView);
+        setFadeAnimation(holder.itemView, position);
 //        setScaleAnimation(holder.itemView);
     }
 
@@ -52,28 +58,38 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
         return avatars.size();
     }
 
-    public class AvatarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class AvatarViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView avatarImage;
-        TextView avatarName;
+        private ImageView avatarImage;
+        private TextView avatarName;
 
         public AvatarViewHolder(View itemView) {
             super(itemView);
-
             avatarImage = (ImageView) itemView.findViewById(R.id.iv_avatar_item);
             avatarName = (TextView) itemView.findViewById(R.id.tv_avatar_item);
         }
 
-        @Override
-        public void onClick(View view) {
+        public void bind(final Avatar avatar, final OnItemClickListener listener) {
+            avatarName.setText(avatar.getAvatarName());
+//            imageLoader.loadWithTransformation(avatarImage, avatar.getAvatarImage(), new CircleTransform());
+            Picasso.with(itemView.getContext()).load(avatar.getAvatarImage()).into(avatarImage);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(avatar);
+                }
+            });
         }
     }
 
-    private void setFadeAnimation(View view) {
-        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(1000);
-        view.startAnimation(anim);
+    private void setFadeAnimation(View view, int position) {
+        if (position > lastPosition) {
+            AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+            anim.setDuration(1000);
+            view.startAnimation(anim);
+            lastPosition = position;
+        }
     }
 
     private void setScaleAnimation(View view) {
