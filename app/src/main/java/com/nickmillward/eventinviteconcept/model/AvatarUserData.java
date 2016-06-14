@@ -16,7 +16,6 @@ public class AvatarUserData {
 
         avatars = new ArrayList<>();
 
-        avatars.add(new Avatar("http://pbs.twimg.com/profile_images/2284174872/7df3h38zabcvjylnyfe3_normal.png", "Twitter"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
@@ -24,7 +23,8 @@ public class AvatarUserData {
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
         avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
-
+        avatars.add(new Avatar("http://pbs.twimg.com/profile_images/710185851498729473/80w95ZyZ.jpg", "Nick"));
+        
         return avatars;
     }
 }
