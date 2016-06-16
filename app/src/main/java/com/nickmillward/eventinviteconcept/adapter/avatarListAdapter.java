@@ -55,7 +55,7 @@ public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.Av
         return avatars.size();
     }
 
-    static class AvatarViewHolder extends RecyclerView.ViewHolder {
+    public static class AvatarViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView avatarImage;
         private TextView avatarName;

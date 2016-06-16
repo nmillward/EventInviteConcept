@@ -31,7 +31,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private LinearLayout avatarInviteOverlay;
     private RecyclerView avatarRecyclerView;
-    private AvatarListAdapter avatarListAdapter;
+    private AvatarListAdapter AvatarListAdapter;
     private GridLayoutManager gridLayoutManager;
     private List<Avatar> avatars;
     private AvatarUserData avatarUserData;
@@ -78,7 +78,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         }
 
         avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
-        avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
+        AvatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Avatar item) {
                 if (!isAvatarSelected) {
@@ -97,7 +97,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
             }
         });
-        avatarRecyclerView.setAdapter(avatarListAdapter);
+        avatarRecyclerView.setAdapter(AvatarListAdapter);
 
         gridLayoutManager = new GridLayoutManager(this, 4);
         avatarRecyclerView.setLayoutManager(gridLayoutManager);
