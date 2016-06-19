@@ -24,7 +24,7 @@ import java.util.List;
 public class AvatarListAdapter extends SelectableAdapter<AvatarListAdapter.AvatarViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(Avatar item);
+        void onItemClick(int item);
     }
 
     private final List<Avatar> avatars;
@@ -46,6 +46,8 @@ public class AvatarListAdapter extends SelectableAdapter<AvatarListAdapter.Avata
     public void onBindViewHolder(AvatarViewHolder holder, int position) {
         holder.bind(avatars.get(position), listener);
 
+        holder.avatarSelectImage.setVisibility(isSelected(position) ? View.VISIBLE : View.INVISIBLE);
+
         setFadeAnimation(holder.itemView, position);
 //        setScaleAnimation(holder.itemView);
     }
@@ -59,12 +61,14 @@ public class AvatarListAdapter extends SelectableAdapter<AvatarListAdapter.Avata
 
         private ImageView avatarImage;
         private TextView avatarName;
+        private View avatarSelectImage;
         private ImageLoader imageLoader;
 
         public AvatarViewHolder(View itemView) {
             super(itemView);
             avatarImage = (ImageView) itemView.findViewById(R.id.iv_avatar_item);
             avatarName = (TextView) itemView.findViewById(R.id.tv_avatar_item);
+            avatarSelectImage = itemView.findViewById(R.id.view_avatar_select);
             imageLoader = new PicassoImageLoader(itemView.getContext());
         }
 
@@ -74,7 +78,7 @@ public class AvatarListAdapter extends SelectableAdapter<AvatarListAdapter.Avata
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(avatar);
+                    listener.onItemClick(getPosition());
                 }
             });
         }

@@ -31,7 +31,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private LinearLayout avatarInviteOverlay;
     private RecyclerView avatarRecyclerView;
-    private AvatarListAdapter AvatarListAdapter;
+    private AvatarListAdapter avatarListAdapter;
     private GridLayoutManager gridLayoutManager;
     private List<Avatar> avatars;
     private AvatarUserData avatarUserData;
@@ -78,14 +78,16 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         }
 
         avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
-        AvatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
+        avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Avatar item) {
+            public void onItemClick(int item) {
                 if (!isAvatarSelected) {
                     fab.setImageResource(R.drawable.avd_cross_to_check);
+                    toggleAvatarSelection(item);
                     isAvatarSelected = true;
                 } else {
                     fab.setImageResource(R.drawable.avd_check_to_cross);
+                    toggleAvatarSelection(item);
                     isAvatarSelected = false;
                 }
 
@@ -97,7 +99,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
             }
         });
-        avatarRecyclerView.setAdapter(AvatarListAdapter);
+        avatarRecyclerView.setAdapter(avatarListAdapter);
 
         gridLayoutManager = new GridLayoutManager(this, 4);
         avatarRecyclerView.setLayoutManager(gridLayoutManager);
@@ -179,6 +181,10 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         }
 
         fab.setLayoutParams(params);
+    }
+
+    private void toggleAvatarSelection(int position) {
+        avatarListAdapter.toggleSelection(position);
     }
 
     private void revealInviteOverlay(View view) {
