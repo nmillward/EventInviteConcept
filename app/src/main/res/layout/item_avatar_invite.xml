@@ -7,12 +7,30 @@
     android:gravity="center"
     android:padding="@dimen/standard_padding_half">
 
-    <ImageView
-        android:id="@+id/iv_avatar_item"
-        android:layout_width="@dimen/avatar_image_size"
-        android:layout_height="@dimen/avatar_image_size"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/nick_profile_small"/>
+    <FrameLayout
+        android:id="@+id/fl_avatar_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_avatar_select"
+            android:layout_width="@dimen/avatar_select_size"
+            android:layout_height="@dimen/avatar_select_size"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_select_avatar"
+            android:visibility="gone"
+            tools:src="@drawable/circle_select_avatar"/>
+
+        <ImageView
+            android:id="@+id/iv_avatar_item"
+            android:layout_width="@dimen/avatar_image_size"
+            android:layout_height="@dimen/avatar_image_size"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/nick_profile_small"/>
+
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_avatar_item"
@@ -20,6 +38,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/white"
-        tools:text="Avatar Name"/>
+        tools:text="Avatar Name"
+        tools:textColor="@android:color/black"/>
 
 </LinearLayout>

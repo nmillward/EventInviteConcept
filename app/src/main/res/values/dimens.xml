@@ -8,4 +8,5 @@
     <dimen name="standard_padding_half">8dp</dimen>
 
     <dimen name="avatar_image_size">64dp</dimen>
+    <dimen name="avatar_select_size">72dp</dimen>
 </resources>
