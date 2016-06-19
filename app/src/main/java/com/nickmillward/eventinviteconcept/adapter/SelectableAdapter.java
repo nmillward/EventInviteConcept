@@ -18,7 +18,7 @@ public abstract class SelectableAdapter<VH extends RecyclerView.ViewHolder> exte
     // https://developer.android.com/reference/android/util/SparseBooleanArray.html
     private SparseBooleanArray selectedItems;
 
-    public SelectableAdapter(SparseBooleanArray selectedItems) {
+    public SelectableAdapter() {
         selectedItems = new SparseBooleanArray();
     }
 

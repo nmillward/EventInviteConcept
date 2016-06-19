@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by nmillward on 6/10/16.
  */
-public class AvatarListAdapter extends RecyclerView.Adapter<AvatarListAdapter.AvatarViewHolder> {
+public class AvatarListAdapter extends SelectableAdapter<AvatarListAdapter.AvatarViewHolder> {
 
     public interface OnItemClickListener {
         void onItemClick(Avatar item);
