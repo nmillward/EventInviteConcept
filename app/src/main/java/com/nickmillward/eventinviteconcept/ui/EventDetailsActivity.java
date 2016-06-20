@@ -38,7 +38,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private boolean isInviteOverlayVisible;
     private boolean isFabBgVisible;
-    private boolean isAvatarSelected;
+    private boolean isFabCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
-
-        isAvatarSelected = false;
 
         if (fab != null) {
             fab.setOnClickListener(this);
@@ -81,21 +79,9 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int item) {
-                if (!isAvatarSelected) {
-                    fab.setImageResource(R.drawable.avd_cross_to_check);
-                    toggleAvatarSelection(item);
-                    isAvatarSelected = true;
-                } else {
-                    fab.setImageResource(R.drawable.avd_check_to_cross);
-                    toggleAvatarSelection(item);
-                    isAvatarSelected = false;
-                }
 
-                // Animate the AVD
-                Drawable drawable = fab.getDrawable();
-                if (drawable instanceof Animatable) {
-                    ((Animatable) drawable).start();
-                }
+                toggleAvatarSelection(item);
+                toggleFabIcon(avatarListAdapter.getSelectedItemCount());
 
             }
         });
@@ -109,45 +95,31 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
             case R.id.event_detail_fab:
-
-                // If invite overlay is NOT visible, show FAB with PLUS
-                // Fab onClick = reveal overlay, change FAB icon to CROSS
                 if (!isInviteOverlayVisible) {
                     revealInviteOverlay(avatarInviteOverlay);
                     fab.setImageResource(R.drawable.avd_plus_to_cross);
 //                    fab.setCompatElevation(0);
-
 //                    animateFabPosition(fab);
-
-                }
-
-                // If invite overlay is visible AND Avatar is NOT selected, show FAB with CROSS
-                // Fab onClick = hide overlay, change FAB icon to PLUS
-                else {
+                } else {
                     fab.setImageResource(R.drawable.avd_cross_to_plus);
 //                    fab.setCompatElevation(4);
-
-                    if (!isAvatarSelected) {
+                    if (avatarListAdapter.getSelectedItemCount() == 0) {
                         hideInviteOverlay(avatarInviteOverlay);
                     } else {
-                        Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
                         hideInviteOverlay(avatarInviteOverlay);
-                        isAvatarSelected = false;
+                        Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
+                        avatarListAdapter.clearSelection();
+                        isFabCheck = false;
                     }
-
 //                    animateFabPosition(fab);
                 }
-
                 // Animate the AVD
                 Drawable drawable = fab.getDrawable();
                 if (drawable instanceof Animatable) {
                     ((Animatable) drawable).start();
                 }
-
-
         }
     }
 
@@ -185,6 +157,23 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private void toggleAvatarSelection(int position) {
         avatarListAdapter.toggleSelection(position);
+    }
+
+    private void toggleFabIcon(int selectedItemCount) {
+        if (selectedItemCount < 1) {
+            fab.setImageResource(R.drawable.avd_check_to_cross);
+            isFabCheck = false;
+        } else if (selectedItemCount == 1 && !isFabCheck) {
+            fab.setImageResource(R.drawable.avd_cross_to_check);
+        } else {
+            fab.setImageResource(R.drawable.ic_check);
+            isFabCheck = true;
+        }
+
+        Drawable drawable = fab.getDrawable();
+        if (drawable instanceof Animatable) {
+            ((Animatable) drawable).start();
+        }
     }
 
     private void revealInviteOverlay(View view) {
