@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/event_detail_nested_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.nickmillward.eventinviteconcept.test"
-    tools:showIn="@layout/activity_test">
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/event_detail_nested_scroll_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.nickmillward.eventinviteconcept.test"
+        tools:showIn="@layout/activity_test">
 
         <LinearLayout
             android:id="@+id/ll_event_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/standard_padding"
             android:orientation="horizontal">
 
             <ImageView
@@ -31,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/standard_padding"
-                android:src="@drawable/ic_schedule_black_24px"/>
+                android:src="@drawable/ic_schedule_black_24px" />
 
             <LinearLayout
                 android:id="@+id/ll_event_time_text"
@@ -43,22 +44,84 @@
                     android:id="@+id/tv_event_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Saturday at 08:00"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_body_reg"
-                    android:text="Saturday at 08:00"/>
+                    android:textSize="@dimen/text_body_reg" />
 
                 <TextView
                     android:id="@+id/tv_event_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="June 23, 2016"
                     android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_body_caption"
-                    android:text="June 23, 2016"/>
+                    android:textSize="@dimen/text_body_caption" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+        <LinearLayout
+            android:id="@+id/ll_event_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/standard_padding"
+            android:orientation="horizontal">
 
-</LinearLayout>
+            <ImageView
+                android:id="@+id/ic_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/standard_padding"
+                android:src="@drawable/ic_room_black_24px" />
+
+            <LinearLayout
+                android:id="@+id/ll_event_loc_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_loc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Squarespace HQ"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body_reg" />
+
+                <TextView
+                    android:id="@+id/tv_loc_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8 Clarkson Street, New York, NY"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_body_caption" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_event_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/standard_padding"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ic_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/standard_padding"
+                android:src="@drawable/ic_info_outline_black_24px"/>
+
+            <TextView
+                android:id="@+id/tv_event_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
