@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="transparent">#00FFFFFF</color>
+
+    <color name="text_primary">#D9000000</color>
+    <color name="text_secondary">#8C000000</color>
 </resources>

@@ -9,4 +9,8 @@
 
     <dimen name="avatar_image_size">64dp</dimen>
     <dimen name="avatar_select_size">72dp</dimen>
+    
+    <dimen name="text_body_reg">14sp</dimen>
+    <dimen name="text_body_caption">12sp</dimen>
+
 </resources>
