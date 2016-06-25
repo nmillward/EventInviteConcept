@@ -124,10 +124,18 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    /**
+     * Displays / Hides drawable for selected recyclerView item
+     * @param position - The recyclerView item position that was clicked
+     */
     private void toggleAvatarSelection(int position) {
         avatarListAdapter.toggleSelection(position);
     }
 
+    /**
+     * Handle Fab Animated Vector Drawable logic
+     * @param selectedItemCount - Check if any recyclerView items are selected. Assign FAB icon accordingly
+     */
     private void toggleFabIcon(int selectedItemCount) {
         if (selectedItemCount < 1) {
             fab.setImageResource(R.drawable.avd_check_to_cross);
