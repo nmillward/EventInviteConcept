@@ -5,13 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
@@ -42,7 +40,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     private ImageLoader imageLoader;
 
     private boolean isInviteOverlayVisible;
-    private boolean isFabBgVisible;
     private boolean isFabCheck;
 
     @Override
@@ -59,18 +56,9 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         imageLoader.load(bannerImage, "https://dl.dropboxusercontent.com/u/7862484/nyc.jpeg");
 
-        isFabBgVisible = true;
-
         if (fab != null) {
             fab.setOnClickListener(this);
         }
-
-        //Enable Layout Transitions on Coordinator Layout
-//        CoordinatorLayout fabContainer = (CoordinatorLayout) findViewById(R.id.event_detail_coordinator_layout);
-//        LayoutTransition layoutTransition = fabContainer.getLayoutTransition();
-//        layoutTransition.enableTransitionType(LayoutTransition.CHANGING);
-
-//        animateFabPosition(fab);
 
         isInviteOverlayVisible = false;
         if (avatarInviteOverlay != null) {
@@ -115,11 +103,8 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                 if (!isInviteOverlayVisible) {
                     revealInviteOverlay(avatarInviteOverlay);
                     fab.setImageResource(R.drawable.avd_plus_to_cross);
-//                    fab.setCompatElevation(0);
-//                    animateFabPosition(fab);
                 } else {
                     fab.setImageResource(R.drawable.avd_cross_to_plus);
-//                    fab.setCompatElevation(4);
                     if (avatarListAdapter.getSelectedItemCount() == 0) {
                         hideInviteOverlay(avatarInviteOverlay);
                     } else {
@@ -128,7 +113,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                         avatarListAdapter.clearSelection();
                         isFabCheck = false;
                     }
-//                    animateFabPosition(fab);
                 }
                 // Animate the AVD
                 Drawable drawable = fab.getDrawable();
@@ -136,38 +120,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     ((Animatable) drawable).start();
                 }
         }
-    }
-
-    private void animateFabPosition(FloatingActionButton fab) {
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
-
-        if (!isFabBgVisible) {
-            params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-
-//            Animation rotate = new RotateAnimation(0, 45, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//            rotate.setFillBefore(true);
-//            rotate.setFillAfter(true);
-//            rotate.setFillEnabled(true);
-//            rotate.setDuration(450);
-//            rotate.setInterpolator(new FastOutSlowInInterpolator());
-//            fab.setAnimation(rotate);
-
-            isFabBgVisible = true;
-        } else {
-            params.gravity = Gravity.BOTTOM | Gravity.END;
-
-//            Animation rotate = new RotateAnimation(45, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//            rotate.setFillBefore(true);
-//            rotate.setFillAfter(true);
-//            rotate.setFillEnabled(true);
-//            rotate.setDuration(450);
-//            rotate.setInterpolator(new FastOutSlowInInterpolator());
-//            fab.setAnimation(rotate);
-
-            isFabBgVisible = false;
-        }
-
-        fab.setLayoutParams(params);
     }
 
     private void toggleAvatarSelection(int position) {
