@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ import com.nickmillward.eventinviteconcept.R;
 import com.nickmillward.eventinviteconcept.adapter.AvatarListAdapter;
 import com.nickmillward.eventinviteconcept.entity.Avatar;
 import com.nickmillward.eventinviteconcept.model.AvatarUserData;
+import com.nickmillward.eventinviteconcept.util.ImageLoader;
+import com.nickmillward.eventinviteconcept.util.PicassoImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +31,15 @@ import java.util.List;
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton fab;
-
+    private ImageView bannerImage;
     private LinearLayout avatarInviteOverlay;
     private RecyclerView avatarRecyclerView;
     private AvatarListAdapter avatarListAdapter;
     private GridLayoutManager gridLayoutManager;
     private List<Avatar> avatars;
     private AvatarUserData avatarUserData;
+
+    private ImageLoader imageLoader;
 
     private boolean isInviteOverlayVisible;
     private boolean isFabBgVisible;
@@ -47,6 +52,11 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
+
+        imageLoader = new PicassoImageLoader(this);
+
+        bannerImage = (ImageView) findViewById(R.id.event_detail_parallax_image);
+        imageLoader.load(bannerImage, "https://dl.dropboxusercontent.com/u/7862484/nyc.jpeg");
 
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
