@@ -28,6 +28,7 @@ import java.util.List;
 
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Toolbar toolbar;
     private FloatingActionButton fab;
     private ImageView bannerImage;
     private LinearLayout avatarInviteOverlay;
@@ -47,10 +48,10 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_event);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
-        setSupportActionBar(toolbar);
-
         bindActivity();
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Holiday Party 2016");
 
         imageLoader = new PicassoImageLoader(this);
 
@@ -90,6 +91,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void bindActivity() {
+        toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         bannerImage = (ImageView) findViewById(R.id.event_detail_parallax_image);
         fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         avatarInviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
