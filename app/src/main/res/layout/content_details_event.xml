@@ -79,7 +79,7 @@
                     android:id="@+id/tv_loc_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Squarespace HQ"
+                    android:text="Google HQ"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_body_reg" />
 
@@ -87,7 +87,7 @@
                     android:id="@+id/tv_loc_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8 Clarkson Street, New York, NY"
+                    android:text="76 9th Ave, New York, NY 10011"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_body_caption" />
 
