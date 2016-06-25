@@ -53,12 +53,12 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
         setSupportActionBar(toolbar);
 
+        bindActivity();
+
         imageLoader = new PicassoImageLoader(this);
 
-        bannerImage = (ImageView) findViewById(R.id.event_detail_parallax_image);
         imageLoader.load(bannerImage, "https://dl.dropboxusercontent.com/u/7862484/nyc.jpeg");
 
-        fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
         isFabBgVisible = true;
 
         if (fab != null) {
@@ -73,7 +73,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
 //        animateFabPosition(fab);
 
         isInviteOverlayVisible = false;
-        avatarInviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
         if (avatarInviteOverlay != null) {
             avatarInviteOverlay.setVisibility(View.INVISIBLE);
         }
@@ -85,7 +84,6 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
             avatars.addAll(avatarUserData.getAvatars());
         }
 
-        avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
         avatarListAdapter = new AvatarListAdapter(avatars, new AvatarListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int item) {
@@ -101,6 +99,13 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         avatarRecyclerView.setLayoutManager(gridLayoutManager);
         avatarRecyclerView.setHasFixedSize(true);
 
+    }
+
+    private void bindActivity() {
+        bannerImage = (ImageView) findViewById(R.id.event_detail_parallax_image);
+        fab = (FloatingActionButton) findViewById(R.id.event_detail_fab);
+        avatarInviteOverlay = (LinearLayout) findViewById(R.id.event_detail_invite_overlay);
+        avatarRecyclerView = (RecyclerView) findViewById(R.id.rv_avatar_invite);
     }
 
     @Override
