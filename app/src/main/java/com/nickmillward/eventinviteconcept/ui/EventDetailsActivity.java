@@ -2,6 +2,7 @@ package com.nickmillward.eventinviteconcept.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -113,6 +114,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                         hideInviteOverlay(avatarInviteOverlay);
                         Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
                         avatarListAdapter.clearSelection();
+                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
                         isFabCheck = false;
                     }
                 }
@@ -139,9 +141,11 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     private void toggleFabIcon(int selectedItemCount) {
         if (selectedItemCount < 1) {
             fab.setImageResource(R.drawable.avd_check_to_cross);
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
             isFabCheck = false;
         } else if (selectedItemCount == 1 && !isFabCheck) {
             fab.setImageResource(R.drawable.avd_cross_to_check);
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccentGreen)));
         } else {
             fab.setImageResource(R.drawable.ic_check);
             isFabCheck = true;
