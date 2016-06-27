@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:elevation="6dp"
         android:background="@drawable/dialog_background"
-        android:transitionName="invite_confirm">
+        android:transitionName="@string/transition_invite_dialog">
 
         <TextView
             android:id="@+id/tv_dialog_confirm"
@@ -24,7 +24,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textSize="@dimen/text_title"
-            android:text="Party Time!" />
+            android:text="@string/party_time" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textStyle="italic"
-            android:text="Confirm and we'll notify your friends!"/>
+            android:text="@string/confirm_and_we_ll_notify_your_friends"/>
 
         <Button
             android:id="@+id/btn_confirm"
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:background="@color/colorAccentGreen"
             android:textColor="@color/white"
-            android:text="CONFIRM"/>
+            android:text="@string/confirm"/>
 
     </LinearLayout>
 
