@@ -7,6 +7,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +16,6 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.nickmillward.eventinviteconcept.R;
 import com.nickmillward.eventinviteconcept.adapter.AvatarListAdapter;
@@ -112,7 +112,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                         hideInviteOverlay(avatarInviteOverlay);
                     } else {
                         hideInviteOverlay(avatarInviteOverlay);
-                        Toast.makeText(this, "Invite Sent!", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.event_detail_coordinator_layout), "Invite Sent!", Snackbar.LENGTH_LONG).show();
                         avatarListAdapter.clearSelection();
                         fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
                         isFabCheck = false;
