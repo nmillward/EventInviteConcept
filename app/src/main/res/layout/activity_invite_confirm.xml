@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:textStyle="bold"
             android:textSize="@dimen/text_title"
             android:text="Party Time!" />
 
