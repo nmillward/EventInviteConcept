@@ -10,4 +10,7 @@
 
     <color name="text_primary">#D9000000</color>
     <color name="text_secondary">#8C000000</color>
+
+    <color name="background_light_grey">#FAFAFA</color>
+    <color name="background_trans_grey">#993C3C3C</color>
 </resources>

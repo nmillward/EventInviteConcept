@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.InviteConfirmActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_dialog_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="48dp"
+        android:padding="32dp"
+        android:layout_gravity="center"
+        android:elevation="6dp"
+        android:background="@drawable/dialog_background"
+        android:transitionName="invite_confirm">
+
+        <TextView
+            android:id="@+id/tv_dialog_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_title"
+            android:text="Party Time!" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:text="Confirm and we'll notify your friends!"/>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_padding"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:background="@color/colorAccentGreen"
+            android:textColor="@color/white"
+            android:text="CONFIRM"/>
+
+    </LinearLayout>
+
+</FrameLayout>
