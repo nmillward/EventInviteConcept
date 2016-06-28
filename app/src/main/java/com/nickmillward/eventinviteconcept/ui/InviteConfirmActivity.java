@@ -8,6 +8,10 @@ import android.widget.Button;
 
 import com.nickmillward.eventinviteconcept.R;
 
+/**
+ * //////// WORK IN PROGRESS ////////
+ */
+
 public class InviteConfirmActivity extends AppCompatActivity {
 
     private Button confirmButton;
@@ -25,7 +29,6 @@ public class InviteConfirmActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 

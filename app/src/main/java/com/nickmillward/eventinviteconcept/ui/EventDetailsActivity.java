@@ -2,12 +2,12 @@ package com.nickmillward.eventinviteconcept.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -111,13 +111,11 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
                     if (avatarListAdapter.getSelectedItemCount() == 0) {
                         hideInviteOverlay(avatarInviteOverlay);
                     } else {
-//                        hideInviteOverlay(avatarInviteOverlay);
-//                        Snackbar.make(findViewById(R.id.event_detail_coordinator_layout), "Invite Sent!", Snackbar.LENGTH_LONG).show();
-//                        avatarListAdapter.clearSelection();
-//                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
-//                        isFabCheck = false;
-                        Intent intent = new Intent(this, InviteConfirmActivity.class);
-                        startActivity(intent);
+                        hideInviteOverlay(avatarInviteOverlay);
+                        Snackbar.make(findViewById(R.id.event_detail_coordinator_layout), "Invite Sent!", Snackbar.LENGTH_LONG).show();
+                        avatarListAdapter.clearSelection();
+                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+                        isFabCheck = false;
                     }
                 }
                 // Animate the AVD
