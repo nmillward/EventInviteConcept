@@ -7,6 +7,10 @@ This is a concept for an event invite page where the focus is on FAB Animated Ve
 - SelectableAdapter // Generic Adapter for selected state of given element
 - CoordinatorLayout w/Snackbar notification
 
+### SDK Version
+- Min SDK Version 21
+- Target SDK Version 23
+
 ### WIP
 - FAB Transformation // Morph FAB <--> Dialog
 
